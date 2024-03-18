@@ -1,0 +1,182 @@
+/* --- RESET --- */
+body {
+    font-family: 'Raleway', sans-serif;
+}
+
+ul,
+p {
+    margin: 0;
+    padding: 0;
+}
+
+li {
+    list-style: none;
+}
+
+
+/* --- HEADING --- */
+
+h1 {
+    font-family: 'Raleway', sans-serif;
+    margin: 0;
+}
+
+/* --- COULEURS --- */
+:root {
+    --white: #FFFFFF;
+    --lightgrey: #F5F5F5;
+    --grey: #CCCCCC;
+    --lightgreen: #95d6b7;
+    --green: #45A049;
+    --black: #000000;
+}
+
+
+/* --- CONTENT --- */
+body {
+    height: 100vh;
+    background: red;
+
+    .main {
+        display: flex;
+        flex-direction: column;
+        height: 100%;
+
+        .header {
+            padding: 1rem;
+            border-bottom: var(--grey) solid 1px;
+            background: var(--lightgrey);
+            border-radius: 6px 6px 0 0;
+        }
+
+        .todo-list {
+            flex: 1;
+            padding: 1rem;
+
+            #list {
+                display: flex;
+                flex-direction: column;
+                gap: .5rem;
+
+                .item {
+                    display: flex;
+                    justify-content: space-between;
+                    align-items: center;
+                    padding: 1rem;
+                    border: 1px solid var(--grey);
+                    border-radius: .5rem;
+                    gap: 1rem;
+
+                    .check {
+                        height: 16px;
+                        width: 16px;
+                        border: var(--grey) solid 1px;
+                        border-radius: 4px;
+                        cursor: pointer;
+                        transition: all ease-in-out .1s;
+                    }
+
+                    .check:hover {
+                        background: var(--lightgreen);
+                    }
+
+                    .content {
+                        flex: 1;
+
+                        .text {
+                            position: relative;
+                            width: fit-content;
+                            padding-right: 4px;
+                        }
+
+                        .text::before {
+                            content: "";
+                            position: absolute;
+                            height: 2px;
+                            top: 50%;
+                            left: -27px;
+                            background: var(--green);
+                            border-radius: 2px;
+                            transition: background 0.3s ease;
+                        }
+                    }
+
+                    .icon {
+                        height: 20px;
+                    }
+                }
+
+                .item[checked=true] {
+
+                    .check {
+                        background: var(--green);
+                        border: var(--green) 1px solid;
+                    }
+
+                    .check:hover {
+                        background: var(--green);
+                    }
+
+                    .text {
+                        color: var(--grey);
+                    }
+
+                    .text::before {
+                        background: var(--grey);
+                        animation: slice 0.4s ease forwards;
+                    }
+                }
+            }
+        }
+
+        .add-task {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            padding: 1rem;
+            border-radius: 0 0 6px 6px;
+            border-top: var(--grey) solid 1px;
+            background: var(--lightgrey);
+
+            .button {
+                padding: .5rem 1rem;
+                border-radius: 4px;
+                background-color: var(--green);
+                border: solid 1px var(--green);
+                color: var(--lightgrey);
+                text-align: center;
+                cursor: pointer;
+                transition: background-color ease-in-out .2s;
+            }
+
+            .button:hover {
+                background-color: var(--lightgrey);
+                color: var(--green);
+            }
+
+            input {
+                height: 1.5rem;
+                padding: .2rem .5rem;
+                flex: 1;
+            }
+
+            input:focus {
+                outline: none;
+            }
+        }
+    }
+}
+
+
+@keyframes slice {
+    60% {
+        width: 100%;
+        left: 4px;
+    }
+
+    100% {
+        width: 100%;
+        left: -2px;
+        padding-left: 0;
+    }
+}
