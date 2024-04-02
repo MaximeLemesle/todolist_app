@@ -72,21 +72,23 @@ observer.observe(list, { attributes: true, childList: true, subtree: true });
 
 // Sauvegarder les taches
 const saveTasksInJson = () => {
-  console.log(tasks);
-  window.Bridge.saveData(tasks);
+  fs.writeFile("../data/data.json", JSON.stringify(tasks), (err) => {
+    if (err) throw err;
+    console.log("Tasks saved :" + tasks)
+  })
 };
 
-// Afficher les taches sauvegardées
-// window.addEventListener("load", () => {
-//   const savedTasks = window.Bridge.loadData();
-//   if (savedTasks) {
-//     tasks = JSON.parse(savedTasks);
-//     tasks.forEach((task) => {
-//       addTask(task.task);
-//       if (task.checked) {
-//         const listItem = document.getElementById(task.id);
-//         listItem.querySelector(".check").classList.add("checked");
-//       }
-//     });
-//   }
-// });
+// Afficher les taches
+const loadTasksFromJson = () => {
+  fs.readFile("../data/data.json", (err, data) => {
+    if (err) throw err;
+    tasks = JSON.parse(data);
+    tasks.forEach((task) => {
+      addTaskToList(task.task, task.id, task.checked);
+    });
+  });
+};
+
+window.addEventListener("load", () => {
+  loadTasksFromJson();
+});

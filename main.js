@@ -1,6 +1,19 @@
-import { app, BrowserWindow, ipcMain } from "electron";
+import { app, BrowserWindow } from "electron";
+import sqlite3 from "sqlite3";
 // import icon from "./src/images/logo-todolist.png?asset";
-import path from "path";
+
+// Mise en place de la db locale
+const dbPath = "./src/data/tasks.db";
+
+const db = new sqlite3.Database(dbPath, (err) => {
+  if (err) throw err;
+
+  console.log(`Database start on ${dbPath}`);
+
+  db.run(
+    "CREATE TABLE IF NOT EXISTS Tasks (id INTEGER PRIMARY KEY, task TEXT, checked BOOLEAN)"
+  );
+});
 
 const createWindow = () => {
   const win = new BrowserWindow({
@@ -27,9 +40,12 @@ app.whenReady().then(() => {
   app.on("activate", () => {
     if (BrowserWindow.getAllWindows().length === 0) createWindow();
   });
-
 });
 
 app.on("window-all-closed", () => {
   if (process.platform !== "darwin") app.quit();
+});
+
+app.on("will-quit", () => {
+  db.close();
 });
