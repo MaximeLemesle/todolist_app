@@ -35,8 +35,7 @@ h1 {
 /* --- CONTENT --- */
 body {
     height: 100vh;
-    background: red;
-
+    
     .main {
         display: flex;
         flex-direction: column;
