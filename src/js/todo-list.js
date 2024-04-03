@@ -5,8 +5,9 @@ const button = document.querySelector("#add_task");
 const list = document.querySelector("#list");
 
 // Ajout d'une tache
-function addTask(task) {
+function addTask() {
   const id = generateId();
+  const task = input.value.trim();
 
   const listItem = document.createElement("li");
   listItem.classList.add("item");
@@ -19,26 +20,27 @@ function addTask(task) {
     <img class="icon" src="images/poubelle.png" alt="delete task">
   `;
   list.appendChild(listItem);
+
+  input.value = '';
 }
 
 // Ajout d'une tache avec le btn "ajouter"
 button.addEventListener("click", () => {
   if (input.value.trim() !== "") {
-    addTask(input.value.trim());
-    input.value = "";
+    addTask();
   }
 });
 
 // Ajout d'une tache avec la touche entrer
 input.addEventListener("keypress", (event) => {
   if (event.key === "Enter" && input.value.trim() !== "") {
-    addTask(input.value.trim());
-    input.value = "";
+    addTask();
   }
 });
 
+
 // Détecter les changements
-function callback(list) {
+const callback = (list) => {
   for (let i = 0; i < list.length; i++) {
     const elements = list[i].addedNodes;
     elements.forEach((element) => {
@@ -53,6 +55,6 @@ function callback(list) {
       });
     });
   }
-}
+};
 const observer = new MutationObserver(callback);
 observer.observe(list, { attributes: true, childList: true, subtree: true });
