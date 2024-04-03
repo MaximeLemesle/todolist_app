@@ -4,6 +4,14 @@ const input = document.querySelector("#input");
 const button = document.querySelector("#add_task");
 const list = document.querySelector("#list");
 
+
+// Récupérer les taches
+window.addEventListener('DOMContentLoaded', async () => {
+  const todos = await fetch('http://localhost:8080/todos');
+  console.log(todos);
+})
+
+
 // Ajout d'une tache
 function addTask() {
   const id = generateId();

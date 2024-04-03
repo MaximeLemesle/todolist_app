@@ -2,18 +2,14 @@ import express from "express";
 import mongoose from "mongoose";
 
 // Création du serveur
-const PORT = 3000;
+const PORT = 8080;
 const app = express();
-
-// utilisation du template ejs
-app.set('view engine', 'ejs');
 
 // Connexion à la db
 const connectionString =
   "mongodb+srv://maximelemesle2:rl4TUckUBGQ7BNUX@todolist.de87k7p.mongodb.net/?retryWrites=true&w=majority&appName=TodoList";
 
 // Middleware
-app.use(express.static('public'));
 app.use(express.json());
 
 // Création de la page home
