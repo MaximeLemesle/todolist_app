@@ -23,8 +23,8 @@ router.post("/", async (req, res) => {
   res.json(todo);
 });
 
-router.get("/:id", async (req, res) => {
-  const todo = await Todo.findById(req.params.id);
+router.put("/:id", async (req, res) => {
+  const todo = await Todo.findByIdAndUpdate(req.params.id, req.body, { new: true });
   res.json(todo);
 });
 

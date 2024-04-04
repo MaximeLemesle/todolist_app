@@ -1,2 +1,4 @@
 node_modules
-# out -> ajouter le dossier out car les fichiers sont trop lourds
+dist
+out
+.DS_Store

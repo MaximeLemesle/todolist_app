@@ -28,6 +28,7 @@ h1 {
     --grey: #CCCCCC;
     --lightgreen: #95d6b7;
     --green: #45A049;
+    --lightred: #FFCCCC;
     --black: #000000;
 }
 
@@ -35,7 +36,7 @@ h1 {
 /* --- CONTENT --- */
 body {
     height: 100vh;
-    
+
     .main {
         display: flex;
         flex-direction: column;
@@ -61,7 +62,7 @@ body {
                     display: flex;
                     justify-content: space-between;
                     align-items: center;
-                    padding: 1rem;
+                    padding: .5rem 1rem;
                     border: 1px solid var(--grey);
                     border-radius: .5rem;
                     gap: 1rem;
@@ -102,6 +103,14 @@ body {
 
                     .icon {
                         height: 20px;
+                        padding: 0.5rem;
+                        border-radius: 6px;
+                        cursor: pointer;
+                        transition: all ease-in-out .1s;
+                    }
+
+                    .icon:hover {
+                        background: var(--lightred);
                     }
                 }
 

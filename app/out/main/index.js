@@ -2,17 +2,17 @@
 const electron = require("electron");
 const path = require("path");
 const utils = require("@electron-toolkit/utils");
-const icon = path.join(__dirname, "../../resources/icon.png");
 function createWindow() {
   const mainWindow = new electron.BrowserWindow({
-    width: 900,
-    height: 670,
+    width: 600,
+    height: 700,
     show: false,
     autoHideMenuBar: true,
-    ...process.platform === "linux" ? { icon } : {},
+    icon: "../renderer/assets/img/icon.png?asset",
     webPreferences: {
       preload: path.join(__dirname, "../preload/index.js"),
-      sandbox: false
+      sandbox: false,
+      webSecurity: false
     }
   });
   mainWindow.on("ready-to-show", () => {
