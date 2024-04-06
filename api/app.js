@@ -2,7 +2,7 @@ import express from "express";
 import mongoose from "mongoose";
 
 // Création du serveur
-const PORT = 8080;
+const PORT = 1234;
 const app = express();
 
 // Connexion à la db

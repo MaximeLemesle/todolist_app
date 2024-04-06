@@ -6,7 +6,7 @@ const list = document.querySelector("#list");
 // Affichage des taches dans la db
 async function displayTasks() {
   try {
-    const response = await fetch("http://localhost:8080/todos");
+    const response = await fetch("http://localhost:1234/todos");
 
     const tasks = await response.json();
 
@@ -46,7 +46,7 @@ function createTask(task) {
 // Ajouter une tache
 async function addTask(task) {
   try {
-    const response = await fetch("http://localhost:8080/todos", {
+    const response = await fetch("http://localhost:1234/todos", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -68,8 +68,8 @@ async function addTask(task) {
 // Mettre à jour une tache
 async function updateTask(taskId, checked) {
   try {
-    const response = await fetch(`http://localhost:8080/todos/${taskId}`, {
-      method: "PUT",
+    const response = await fetch(`http://localhost:1234/todos/${taskId}`, {
+      method: "PATCH",
       headers: {
         "Content-Type": "application/json",
       },
@@ -109,7 +109,7 @@ observer.observe(list, { attributes: true, childList: true, subtree: true });
 // Supprimer une tache
 async function deleteTask(taskId) {
   try {
-    const response = await fetch(`http://localhost:8080/todos/${taskId}`, {
+    const response = await fetch(`http://localhost:1234/todos/${taskId}`, {
       method: "DELETE",
       headers: {
         "Content-Type": "application/json",
